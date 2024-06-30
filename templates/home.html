@@ -1,0 +1,312 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body background="bg-gray-200 h-screen flex items-center justify-center">
+  <div class="justify-center max-w-xs">
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <h1 class="text-3xl mb-4 font-bold text-center">Crop Prediction</h1>
+          <form action="{{ url_for('predict')}}" method="post">
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="N">Nitrogen:</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="N" type="number" name="N" required="required">
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="P">Phosphorous:</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="P" type="number" name="P" required="required">
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="K">Potassium:</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="K" type="number" name="K" required="required">
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="Temperature">Temperature:</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Temperature" type="text" name="Temperature" required="required">
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="humidity">Humidity:</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="humidity" type="text" name="humidity" required="required">
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="pH">pH:</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="pH" type="text" name="pH" required="required">
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="rainfall">Rainfall:</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="rainfall" type="text" name="rainfall" required="required">
+              </div>
+              <div class="flex items-center justify-center">
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Predict</button>
+              </div>
+          </form>
+      </div>
+      <div class="text-center text-gray-500">
+          {{prediction_text}}
+      </div>
+  </div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CROP Prediction</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Arimo', sans-serif;
+            animation: backgroundFadeIn 2s ease-out forwards;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            padding-top: 20px;
+            min-height: 100vh;
+        }
+
+        .login,
+        .prediction {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .prediction {
+            width: 370px;
+            height: fit-content;
+            margin-left: 200px;
+            margin-top: 40px !important;
+        }
+
+        @keyframes backgroundFadeIn {
+            from {
+                background-color: #ffffff;
+            }
+
+            to {
+                background-color: #f0f0f0;
+            }
+        }
+
+        .login {
+            height: 100%;
+            background-color: #fff;
+            padding: 40px;
+            margin-left: -200px;
+            width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display';
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+        }
+
+        .progress-bar-under {
+            height: 2px;
+            background: #007bff;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .right-stuff {
+            width: 500px;
+            height: 690px !important;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login">
+            <h1>Crop Prediction</h1>
+            <form action="{{ url_for('predict')}}" method="post">
+                <div class="mb-3">
+                    <label for="Mtemp" class="form-label">Nitrogen:</label>
+                    <input type="number" id="Mtemp" name="Mtemp" class="form-control" min = "0" max = "140" required>
+                    <div class="progress-bar-under"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="mintemp" class="form-label">Phosphorous:</label>
+                    <input type="number" id="mintemp" name="mintemp" class="form-control" min="5" max= "145" required>
+                    <div class="progress-bar-under"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="avgwind" class="form-label">Potassium:</label>
+                    <input type="number" id="avgwind" name="avgwind" class="form-control" min = "5" max = "205"required>
+                    <div class="progress-bar-under"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="avghumidity" class="form-label">Temperature (in °C):</label>
+                    <input type="number" id="avghumidity" name="avghumidity" class="form-control" min="9" max = "44" required>
+                    <div class="progress-bar-under"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="avgpres" class="form-label">Humidity (in g/m^3):</label>
+                    <input type="number" id="avgpres" name="avgpres" class="form-control" min="14" max="100" required>
+                    <div class="progress-bar-under"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="avgpre" class="form-label">pH:</label>
+                    <input type="number" id="avgpre" name="avgpre" class="form-control"  min = "0" max = "14" required>
+                    <div class="progress-bar-under"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="avgprek" class="form-label">Rainfall (in mm):</label>
+                    <input type="number" id="avgprek" name="avgprek" class="form-control" min = "20" max = "300" required>
+                    <div class="progress-bar-under"></div>
+                </div>
+                
+                <div class="button-container">
+                    <button type="submit" id="predictButton" class="btn btn-primary btn-lg">Predict</button>
+                    <button type="reset" class="btn btn-secondary btn-lg reset reset-btn">Reset</button>
+                </div>
+                
+            </form>
+        </div>
+        <div class="right-stuff" id="rightStuff">
+            <div class="text-center mt-3 prediction">
+                {{prediction_text}}
+            </div>
+            <img id="weatherImage" src="{{ url_for('static', filename=image_url) }}" style="margin-top: 50px;background-color: white; margin-left: 100px;" height="550px" width="600px">
+        </div>
+    </div>
+
+    <!-- JavaScript code and Bootstrap scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.form-control');
+            const weatherImage = document.getElementById('weatherImage');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function () {
+                    this.nextElementSibling.style.width = "100%";
+                });
+                input.addEventListener('blur', function () {
+                    if (!this.value) {
+                        this.nextElementSibling.style.width = "0%";
+                    }
+                });
+            });
+
+            const predictButton = document.getElementById('predictButton');
+            const rightStuff = document.getElementById('rightStuff');
+            const resetButton = document.querySelector('.reset');
+
+            resetButton.addEventListener('click', function () {
+                inputs.forEach(input => {
+                    input.value = '';
+                    input.nextElementSibling.style.width = "0%";
+                });
+            });
+            predictButton.addEventListener('click', function () {
+
+                weatherImage.style.display = 'block';
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
