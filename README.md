@@ -19,7 +19,14 @@ cd Crop-Recommendation-System
 
 ### 3. Install dependencies
 ```bash
-pip install tensorflow flask scikit-learn pandas numpy matplotlib gunicorn seaborn
+pip install tensorflow
+pip install flask
+pip install scikit-learn
+pip install pandas
+pip install numpy
+pip install matplotlib
+pip install gunicorn
+pip install seaborn
 ```
 
 ### 4. Start the server
