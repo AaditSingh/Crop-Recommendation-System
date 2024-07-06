@@ -44,5 +44,5 @@ Click on the link generated in the terminal to access the web interface.
 ![Picture](https://github.com/mehullamba7/Crop_Recommendation_System/assets/174151487/5b3dc642-f103-491c-adaa-37b252c1d245)
 ![Picture2](https://github.com/mehullamba7/Crop_Recommendation_System/assets/174151487/fc0a827c-946b-44f0-b75d-db994446478b)
 
-## 👤 Authors
+## 👤 Author
 - **Aadit Singh**
