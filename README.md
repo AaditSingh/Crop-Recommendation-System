@@ -13,7 +13,7 @@ recommendations.
 Clone the project
 
 ```bash
-  git clone https://github.com/mehullamba7/Crop_Recommendation_System.git
+  git clone https://github.com/AaditSingh/Crop-Recommendation-System.git
 ```
 
 Go to the project directory
